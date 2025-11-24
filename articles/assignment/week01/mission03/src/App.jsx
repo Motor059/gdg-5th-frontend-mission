@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Category from './pages/CategoryPage';
 import Price from './pages/PricePage';
 import Sort from './pages/SortPage';
+import Admin from './pages/Admin';
 
 function App() {
   const [page, setPage] = useState("home");
@@ -20,6 +21,7 @@ function App() {
         {page === "category" && <Category />}
         {page === "price" && <Price/>}
         {page === "sort" && <Sort/>}
+        {page === "admin" && <Admin />}
       </main> 
       <Footer />
     </div>

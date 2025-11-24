@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import logoImg from "../assets/gdg_logo.svg";
 
 const Content = () => {
@@ -42,3 +42,4 @@ const Content = () => {
 }
 
 export default Content;
+*/
