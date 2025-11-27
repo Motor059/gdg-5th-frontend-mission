@@ -17,7 +17,7 @@
 상품 데이터를 서버에 요청(Request)하고, 서버로부터 응답(Response)을 받아 화면에 표시하는 모든 과정이 HTTP를 통해 이루어져요. 프론트엔드 개발자가 서버와 데이터를 주고받기 위해 반드시 알아야 할 기본 지식입니다.
 
 ### 미션 내용
-TTP의 핵심 개념(Request/Response 구조, 주요 Method: GET/POST 등, 주요 Status Code: 200, 404, 500 등)과 네트워크 통신의 기본 흐름을 학습하고 정리해봐요! 
+HTTP의 핵심 개념(Request/Response 구조, 주요 Method: GET/POST 등, 주요 Status Code: 200, 404, 500 등)과 네트워크 통신의 기본 흐름을 학습하고 정리해봐요! 
 * [ ]: HTTP & 네트워크 핵심 개념 학습하고 정리하기 
 
 ## 2번째 미션 : React Hooks 심화 학습하기
