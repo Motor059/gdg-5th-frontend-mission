@@ -6,18 +6,18 @@ const ProductCard = ({ item }) => {
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
-    console.log(item.itemName, count);
+    console.log(item.name, count);
     setIsAdded(true);
-    alert(`${item.itemName} ${count}개가 장바구니에 담겼습니다.`);
+    alert(`${item.name} ${count}개가 장바구니에 담겼습니다.`);
   };
 
   return (
     <div className="w-full border border-gray-300 rounded-[8px] p-7 flex items-center justify-between bg-white mb-4 shadow-sm">
       <div className="flex flex-col gap-8 w-[30%]">
-        <h3 className="font-bold text-lg text-gray-800">{item.itemName}</h3>
+        <h3 className="font-bold text-lg text-gray-800">{item.name}</h3>
         <div className="text-sm text-gray-500">
           <span className="font-bold text-black">{item.price.toLocaleString()} 원</span>
-          <span className="ml-2 text-gray-400">남은 수량: {item.quantity}개</span>
+          <span className="ml-2 text-gray-400">남은 수량: {item.stock}개</span>
         </div>
       </div>
       

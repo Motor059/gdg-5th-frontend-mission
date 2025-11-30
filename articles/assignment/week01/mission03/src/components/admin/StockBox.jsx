@@ -21,20 +21,47 @@ const StockBox = ({
   const [category, setCategory] = useState("");
 
   // 상품 등록 api ---------------------------------------------
-  async function handleRegister() {
-    console.log("상품 등록 버튼 클릭");
-
+  const handleRegister = async () => {
     if (itemName === "") {
       alert("상품명을 입력해주세요.");
       return;
     }
-    console.log(`${itemName} ${stock} ${price} ${category} 가 등록되었습니다.`);
+
+    const productData = {
+      name: itemName,
+      price: Number(price),
+      stock: Number(stock), // 또는 count
+      category: category
+    };
+
     try {
-      // ...
+      const response = await fetch('http://192.168.158.20:8080/admin/products', { 
+        method: 'POST', // 데이터를 보낼 때는 POST
+        headers: {
+          'Content-Type': 'application/json', // "나 JSON 보낸다"라고 알려줌
+        },
+        body: JSON.stringify(productData) // 데이터를 문자열로 변환해서 보냄
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("서버 응답:", result);
+        alert(`"${itemName}" 상품이 성공적으로 등록되었습니다!`);
+        
+        // 입력창 초기화
+        setItemName("");
+        setPrice(0);
+        setStock(0);
+        setCategory("");
+      } else {
+        alert("상품 등록 실패!");
+      }
+
     } catch (error) {
-      console.log("데이터 POST 실패: ", error.message || null);
+      console.error("에러 발생:", error);
+      alert("네트워크 오류가 발생했습니다.");
     }
-  }
+  };
 
   // 재고 추가 api ---------------------------------------------
   async function handleIncrease() {

@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { itemData } from '../data/mockData'; 
+import { useState, useEffect } from 'react';
+//import { itemData } from '../data/mockData'; 
 import Cart from './Cart'; 
+import axios from 'axios';
 
 const Home = () => {
   const [content, setContent] = useState("");
@@ -10,9 +11,18 @@ const Home = () => {
     setContent(e.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     console.log(content, "검색"); 
     setSearchQuery(content); 
+      try {
+        const response = await axios.get(`http://192.168.158.20:8080/products?name=${searchQuery}`);
+        
+        console.log('받은 데이터:', response.data);
+        const receivedData = response.data;
+        setitemData(Array.isArray(receivedData) ? receivedData : [receivedData]);
+      } catch (error) {
+        console.error('API 연결 실패:', error);
+      }
   };
 
   const handleKeyDown = (e) => {
@@ -21,8 +31,25 @@ const Home = () => {
     }
   };
 
+  const [itemData, setitemData] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://192.168.158.20:8080/products?name=${searchQuery}`);
+        console.log('받은 데이터:', response.data);
+        const receivedData = response.data;
+        setitemData(Array.isArray(receivedData) ? receivedData : [receivedData]);
+      } catch (error) {
+        console.error('API 연결 실패:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const filteredData = itemData.filter((item) =>
-    item.itemName.includes(searchQuery)
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (

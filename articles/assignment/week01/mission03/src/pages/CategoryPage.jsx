@@ -6,7 +6,7 @@ const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const categories = ['의류', '전자기기', '화장품', '식품'];
-
+  
   const filteredData = selectedCategory === '전체' 
     ? itemData 
     : itemData.filter(item => item.category === selectedCategory);
